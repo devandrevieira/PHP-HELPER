@@ -1,0 +1,226 @@
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+@font-face {
+  font-family: "MuseoSans";
+  src: url("font/museosans.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "FuturaPT";
+  src: url("font/FuturaPT.otf") format("opentype");
+}
+
+body, html{
+  width: 100%;
+  height: 100%;
+  background-color: #003a44;
+}
+
+header{
+  height: 25px;
+  padding: 30px 0;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: MuseoSans;
+  font-size: 22px;
+  letter-spacing: 3px;
+  background: rgba(0, 0, 0, .3);
+}
+
+header div#user{
+  float: left;
+  position: absolute;
+}
+
+header div#user span{
+  padding-top: 4px;
+  letter-spacing: 0;
+  font-size: 16px;
+  display: block;
+}
+
+header div#logout{
+  position: absolute;
+  right: 0;
+  top: -4px;
+}
+header div#logout button{
+  padding: 8px 18px;
+  font-family: MuseoSans;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffffff;
+  background: #003a44;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .5);
+}
+
+header div#logout button:hover{
+  background: #ffffff;
+  color: #003a44;
+}
+
+div#search{
+  float: right;
+  position: absolute;
+}
+
+div#content{
+  width: 1024px;
+  margin: 0 auto;
+  position: relative;
+  
+}
+
+div#content span{
+  padding-top: 4px;
+  letter-spacing: 0;
+  font-size: 16px;
+  display: block; 
+}
+
+div#userTable{
+  margin-top: 30px;
+  width: 100%;
+  background: #c2dde4;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .5);
+}
+
+div#nameScreen{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+}
+
+div#nameScreen span.title{
+  font-family: FuturaPT;
+  font-size: 22px;
+  padding: 30px 10px 0px 10px;
+  display: block;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+div#message{
+  width: 100%;
+  font-family: FuturaPT;
+  font-size: 18px;
+  color: #ffffff;
+  background: #b93c26;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position:absolute;
+  border-radius: 5px;
+}
+
+div#userTable table{
+  width: 100%;
+  font-family: FuturaPT;
+  border-top: 1px solid #66a4ac;
+  border-collapse: collapse;
+}
+
+div#userTable table thead td{
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #66a4ac;
+  color: #06565b
+}
+
+div#userTable table tbody tr{
+  transition: .3s;
+  color: #06565b
+  }
+
+div#userTable table tbody tr:hover{
+  background: #66a4ac;
+  }
+
+div#userTable table tbody tr:nth-child(odd){
+  background-color: #ffffff;
+  }
+
+div#userTable table tbody tr:nth-child(odd):hover{
+  background-color: #66a4ac;
+  }
+
+div#userTable table tbody td{
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+  }
+
+div#searchUser{
+  display: inline-flex;
+  padding: 20px;
+}
+
+div#form{
+  width: auto;
+}
+
+div#newUser{
+  width: 300px;
+}
+
+div#searchUser input.form-control{
+  width: 500px;
+  padding: 5px 20px;
+  font-size: 18px;
+  font-family: FuturaPT;
+  border-radius: 10px;
+  box-shadow: 0 0 0 0;
+  border: 1px solid #06565b;
+  outline: 0;
+}
+
+div#searchUser input.searchButton{
+  padding: 9px 18px;
+  font-family: MuseoSans;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #06565b;
+  background: #ffffff;
+  border: 1px solid #06565b;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+div#searchUser input.searchButton:hover{
+  color: #ffffff;
+  background: #06565b;
+  border: 1px solid #06565b;
+}
+
+div#searchUser input.newUserButton{
+  margin-left: 115px;
+  padding: 9px 18px;
+  font-family: MuseoSans;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #06565b;
+  background: #ffffff;
+  border: 1px solid #06565b;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+div#searchUser input.newUserButton:hover{
+  color: #ffffff;
+  background: #06565b;
+  border: 1px solid #06565b;
+}

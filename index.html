@@ -1,0 +1,40 @@
+<!-- Tela principal para login de utilizador -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PHP HELPER</title>
+  <link rel="stylesheet" type="text/css" href="style/index.css">
+  <script type="text/javascript" src="script/jquery.js"></script>
+  <script type="text/javascript" src="script/access.js"></script>
+</head>
+<body>
+  <header>PHP HELPER</header>
+
+<!-- div id=message invoca mensagens de erro a partir da action login.php -->
+  <div id="message"></div>
+
+<!-- div referente ao formulário de login -->
+  <div id=form>
+    <form id="formLogin">
+      <span class="title">Faça seu login</span>
+      <div id="line">
+        <label for="email">E-mail</label>
+        <input type="text" name="email" id="email" placeholder="Seu e-mail">
+      </div>
+      <div id="line">
+        <label for="keyword">Senha</label>
+        <input type="password" name="keyword" id="keyword" placeholder="Sua senha">
+      </div>
+      <div id="button">
+        <button id="btnLogin">Logar</button>
+      </div>
+      <div id="logo">
+        <img src="style/img/logo.svg" alt="" width="120">
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
