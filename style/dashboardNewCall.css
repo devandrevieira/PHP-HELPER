@@ -75,41 +75,27 @@ div#content{
   
 }
 
-div#message{
-  padding: 15px 0;
-  width: 100%;
-  font-family: MuseoSans;
-  color: #ffffff;
-  background: #b93c26;
-  text-align: center;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  display: none;
-  position:absolute;
-  z-index: 1;
-}
-
 div#form{
   width: 970px;
-  height: 600px;
+  height: 800px;
   position: fixed;
-  top:50%;
-  left:50%;
-  margin-top: -250px;
+  top:45%;
+  left:40%;
+  margin-top: -240px;
   margin-left: -242.5px;
 }
 
-div#form form#newUser{
-  width: 350px;
-  height: 450px;
+div#form form#newCall{
+  width: 650px;
+  height: 520px;
   background: #c2dde4;
-  border-radius: 80px 0 80px 0;
+  border-radius: 80px 0 0 0;
   padding: 30px 50px;
   box-shadow: 0 0 50px rgba(0, 0, 0, .3);
 }
 
 div#form form span.title{
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   text-transform: uppercase;
   font-family: MuseoSans;
   font-size: 20px;
@@ -118,11 +104,17 @@ div#form form span.title{
   text-align: center;
   color: #06565b;
   letter-spacing: 1px;
-
+  
 }
 
 div#form form div#line{
   margin-bottom: 10px;
+  display: flex;
+}
+
+div#form form div#collum{
+  width: 325px;
+  margin-right: 10px;
 }
 
 div#form form div#line label{
@@ -139,9 +131,38 @@ div#form form div#line input{
   background: #eee;
   border: 2px solid #eee;
   border-radius: 10px;
-  width: calc(100% - 16px);
+  width: calc(95% - 16px);
   height: 10px;
   padding: 10px 6px;
+  margin-bottom: 10px;
+
+}
+
+div#form form div#lineText{
+  width: 657px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+div#form form div#lineText label{
+  margin-bottom: 5px;
+  font-family: FuturaPT;
+  font-size: 20px;
+  color: #06565b;
+}
+
+div#form form div#lineText textarea{
+  resize: none;
+  flex-direction:column;
+  font-family: FuturaPT;
+  font-size: 16px;
+  background: #eee;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  width: calc(95% - 16px);
+  height: 70px;
+  padding: 10px 6px;
+  margin: 5px 0 10px 0;
 
 }
 
@@ -168,7 +189,22 @@ div#form form div#button button:hover{
   background: #06565b;
 }
 
-div#form form div#logo{
-  text-align: center;
-  padding-top: 30px;
+div#btnCancel button{
+  padding: 12px 38px;
+  font-family: MuseoSans;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #003a44;
+  background: #c2dde4;
+  border: 0;
+  border-radius: 0 0 40px 40px;
+  cursor: pointer;
+  width: 750px;
 }
+
+div#btnCancel button:hover{
+  font-weight: bold;
+ 
+}
+

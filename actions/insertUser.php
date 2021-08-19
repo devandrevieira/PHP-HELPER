@@ -3,18 +3,18 @@ session_start();
 ob_start();
 include_once "connection.php";
 
-$query = "SELECT * FROM user";
-$result= $connection->prepare($query);
-$result->execute();
-
 if(isset($_POST['name'], $_POST['email'], $_POST['telefone'], $_POST['keyword'], $_POST['admin'])){
   $name = $_POST['name'];
   $email = $_POST['email'];
   $telefone = $_POST['telefone'];
   $keyword = $_POST['keyword'];
-  $admin = $_POST['admin'];
+  if ($_POST['admin'] == "NÃO"){
+    $admin = "0";
+  }else{
+    $admin = "1";
+  };
 
-  $queryInsert = "INSERT INTO user (
+    $queryInsert = "INSERT INTO user (
     name,
     email,
     telefone,
@@ -24,7 +24,7 @@ if(isset($_POST['name'], $_POST['email'], $_POST['telefone'], $_POST['keyword'],
     :name,
     :email,
     :telefone,
-    MD5(:keyword),
+    :keyword,
     :admin)";
   $query = $connection->prepare($queryInsert);
   $result = $query->execute(array(

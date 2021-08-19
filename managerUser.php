@@ -1,4 +1,5 @@
 <?php
+  ini_set('display_errors', 'off');
   session_start();
   if(isset($_SESSION["user"]) && is_array($_SESSION["user"])){
     $admin = $_SESSION["user"][1];
@@ -24,6 +25,9 @@
           </div>
           <div id="logo">
             <span class="logo">PHP HELPER</span>
+          </div>
+          <div id="return">
+          <a href="dashboard.php"><button>Voltar</button></a>
           </div>
           <div id="logout">
           <a href="actions/logout.php"><button>Logout</button></a>
@@ -70,9 +74,9 @@
             </thead>
             <tbody>
               <?php
-                if (isset($_POST["searchButton"])){
+                if (isset($_GET["searchButton"])){
                 }
-                    $keySearch=$_POST['keySearch'];         
+                    $keySearch=$_GET['keySearch'];         
                     $query = $connection->prepare("SELECT * FROM user WHERE id ='$keySearch' or name LIKE '%$keySearch%' or email LIKE '%$keySearch%'");
                     $query->execute();
 
@@ -84,7 +88,7 @@
                     <td><?php echo $row["telefone"]; ?></td>
                     <td><?php echo $row["keyword"]; ?></td>
                     <td><?php echo $row["admin"] ? "SIM" : "NÃO"; ?></td>
-                    <td class="align-middle"><a href="index.php?menunav=edit-contact&idContato=<?=$row["id"] ?>"><img src="style/img/edit.svg" alt="Editar" width="25"></a></td>
+                    <td class="align-middle"><a href= "editUser.php?id=<?=$row["id"] ?>"><img src="style/img/edit.svg" alt="Editar" width="25"></a></td>
                     <td class="align-middle"><a href="actions/deleteUser.php?id=<?=$row["id"] ?>" onclick="return confirm('DESEJA REALMENTE EXCLUIR ESSE UTILIZADOR ?')"><img src="style/img/delete.svg" alt="Excluir" width="20"></a></td>
                 </tr>
               <?php } ?>

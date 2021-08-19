@@ -9,7 +9,7 @@
       $user = $query->fetchAll(PDO::FETCH_ASSOC)[0];
 
       session_start();
-      $_SESSION["user"] = array($user["name"], $user["admin"]);
+      $_SESSION["user"] = array($user["name"], $user["admin"], $user["email"], $user["telefone"], $user["id"]);
 
       echo json_encode(array("erro"=>0));
       

@@ -35,7 +35,7 @@
     <form id="menuOption">
       <span class="title">ESCOLHA UMA OPÇÃO</span>
       <div id="button">
-        <button id="btnLogin">ABRIR CHAMADO</button>
+        <button id="btnLogin" onclick="window.location.href='dashboardNewCall.php';">NOVO CHAMADO</button>
       </div>
       <div id="button">
         <button id="btnLogin">CONSULTAR CHAMADO</button>

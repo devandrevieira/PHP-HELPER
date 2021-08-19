@@ -4,6 +4,11 @@
     $admin = $_SESSION["user"][1];
     $name  = $_SESSION["user"][0];
     require("actions/connection.php");
+
+    $query = $connection->prepare("SELECT * FROM user WHERE id = id");
+    $query->execute();
+    $row=$query->fetch();
+    $id = $_GET['id'];
   }else{
     echo "<script>window.location = '../php_helper/index.html'</script>";
   }  
@@ -34,26 +39,32 @@
     </header>
     
     <div id=form>
-      <form id="newUser" method="POST" action="actions/insertUser.php">
-        <span class="title">inserir dados do utilizador</span>
+      <form id="newUser" method="POST" action="actions/updateUser.php?id=<?=$row["id"] ?>">
+        <span class="title">editar dados do utilizador</span>
         <div id="line">
         <label for="name">Nome</label>
-        <input type="text" name="name" id="name" placeholder="Inserir nome" autocomplete="off" required="required">
+        <input type="text" name="name" id="name" value="<?php echo $row["name"]; ?>" autocomplete="off" required="required">
         <label for="name">E-mail</label>
-        <input type="email" name="email" id="email" placeholder="exemplo@exemplo.com" autocomplete="off" required="required">
+        <input type="email" name="email" id="email" value="<?php echo $row["email"]; ?>" autocomplete="off" required="required">
         <label for="telefone">Telefone</label>
-        <input type="text" name="telefone" id="telefone" placeholder="Inserir Telefone" autocomplete="off" required="required">
+        <input type="text" name="telefone" id="telefone" value="<?php echo $row["telefone"]; ?>" autocomplete="off" required="required">
         <label for="keyword">Senha</label>
-        <input type="text" name="keyword" id="keyword" placeholder="Inserir Senha" autocomplete="off" required="required">
+        <input type="text" name="keyword" id="keyword" value="<?php echo $row["keyword"]; ?>" autocomplete="off" required="required">
         <label for="admin">Administrador</label>
-        <input list="admin" name="admin" placeholder="Administrador? Sim ou Não" autocomplete="off" required="required">
+        <input list="admin" name="admin" value="<?php
+        if($row["admin"] = 1){
+          echo "SIM";
+        }else{
+          echo "NÃO";  
+        }
+          ?>" onfocus="this.value='';" autocomplete="off" required="required">
         <datalist id="admin">
           <option value="NÃO">
           <option value="SIM">
         </datalist>
         </div>
         <div id="button">
-          <button id="btnInsertUser">Inserir</button>
+          <button id="btnInsertUser">Atualizar</button>
         </div>
       </form>
       <div id="btnCancel">
