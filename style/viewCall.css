@@ -44,6 +44,31 @@ header div#user span{
   display: block;
 }
 
+header div#return{
+  position:absolute;
+  right: 0;
+  top: -4px;
+}
+header div#return button{
+  padding: 8px 18px;
+  margin: 0 120px 0 0;
+  font-family: MuseoSans;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffffff;
+  background: #003a44;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .5);
+}
+
+header div#return button:hover{
+  background: #ffffff;
+  color: #003a44;
+}
+
 header div#logout{
   position: absolute;
   right: 0;

@@ -9,12 +9,11 @@
     echo "<script>window.location = '../php_helper/index.html'</script>";
   }  
 ?>
-  <?php if($admin): ?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
-      <link rel="stylesheet" type="text/css" href="style/managerUser.css"> 
+      <link rel="stylesheet" type="text/css" href="style/consultCall.css"> 
       <title>PHP HELPER</title>
     </head>
     <body>
@@ -44,7 +43,7 @@
       </header>
       <div id="content">
         <div id="nameScreen">
-          <span class="title">Gerenciamento de Utilizadores</span>
+          <span class="title">Lista de Chamados</span>
         </div>
         <div id="message">
         <?php
@@ -58,30 +57,38 @@
         <div id="userTable">
           <div id="searchUser">
             <div id="form">
-              <form action="managerUser.php" method="GET">
-                  <input type="text" class="form-control" name="keySearch" placeholder="Filtrar Utilizador">
-                  <input type="submit" class="searchButton" name="searchButton" action="managerUser.php" value="Filtrar" >
+              <form action="consultCall.php" method="GET">
+                  <input type="text" class="form-control" name="keySearch" placeholder="Filtrar Chamados">
+                  <input type="submit" class="searchButton" name="searchButton" action="consultCall.php" value="Filtrar" >
               </form>
             </div>
-            <div id="newUser">
-              <a href="dashboardNewUser.php"><input type="submit" class="newUserButton" name="newUserButton" action="managerUser.php" value="Novo Utilizador"></a>
+            <div id="newCall">
+              <a href="dashboardNewCall.php"><input type="submit" class="newUserButton" name="newUserButton" action="consultCall.php" value="Novo Chamado"></a>
             </div>
           </div>
           <table>
             <thead>
               <tr>
-                <td>ID</td>
+                <td>ID CHAMADO</td>
+                <td>ID USER</td>
                 <td>NOME</td>
                 <td>EMAIL</td>
                 <td>TELEFONE</td>
-                <td>SENHA</td>
-                <td>ADMIN</td>
-                <td>EDITAR</td>
-                <td>EXCLUIR</td>
+                <td>TIPO</td>
+                <td>LOCAL</td>
+                <td>QUARTO</td>
+                <td>DATA</td>
+                <td>DESCRIÇÃO</td>
+                <td>STATUS</td>
+                <td>VER</td>
+                <?php if($admin!=0): ?>
+                <td>ALTERAR STATUS</td>
+                <?php endif ?>
               </tr>
             </thead>
             <tbody>
               <?php
+              
               //Paginação
               $currentPage = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
               $page = (!empty($currentPage)) ? $currentPage : 1;
@@ -90,28 +97,30 @@
 
               $start = ($resultLimit * $page) - $resultLimit;
 
-                if (isset($_GET["searchButton"])){
+               if(isset($_GET["searchButton"])){
                 }
-                    $keySearch=$_GET['keySearch'];         
-                    $query = $connection->prepare("SELECT * FROM user WHERE id ='$keySearch' or name LIKE '%$keySearch%' or email LIKE '%$keySearch%' LIMIT $start, $resultLimit");
-                    $query->execute();
+                  $keySearch=$_GET['keySearch'];         
+                  $query = $connection->prepare("SELECT * FROM calltable WHERE idCall ='$keySearch' or idUserCall = '$keySearch' or nameCall LIKE '%$keySearch%' or emailCall LIKE '%$keySearch%' or typeCall LIKE '%$keySearch%' or local LIKE '%$keySearch%' or room = '$keySearch' or dateCall LIKE '%$keySearch%' or status LIKE '%$keySearch%' LIMIT $start, $resultLimit");
+                  $query->execute();
 
                 while ($row=$query->fetch()) {?>
-                <tr>
-                    <td><?php echo $row["id"]; ?></td>
-                    <td><?php echo $row["name"]; ?></td>
-                    <td><?php echo $row["email"]; ?></td>
-                    <td><?php echo $row["telefone"]; ?></td>
-                    <td><?php echo $row["keyword"]; ?></td>
-                    <td><?php if($row["admin"] == 0){
-                      echo "Utilizador";
-                      }elseif($row["admin"] == 1){
-                        echo "Administrador";
-                      }else{
-                        echo "Manunteção";
-                      };?></td>
-                    <td class="align-middle"><a href= "editUser.php?id=<?=$row["id"] ?>"><img src="style/img/edit.svg" alt="Editar" width="25"></a></td>
-                    <td class="align-middle"><a href="actions/deleteUser.php?id=<?=$row["id"] ?>" onclick="return confirm('DESEJA REALMENTE EXCLUIR ESSE UTILIZADOR ?')"><img src="style/img/delete.svg" alt="Excluir" width="20"></a></td>
+                <tr class="lines">
+                    <td><?php echo $row["idCall"]; ?></td>
+                    <td><?php echo $row["idUserCall"]; ?></td>
+                    <td><?php echo $row["nameCall"]; ?></td>
+                    <td><?php echo $row["emailCall"]; ?></td>
+                    <td><?php echo $row["telefoneCall"]; ?></td>
+                    <td><?php echo $row["typeCall"]; ?></td>
+                    <td><?php echo $row["local"]; ?></td>
+                    <td><?php echo $row["room"]; ?></td>
+                    <td><?php echo $row["dateCall"]; ?></td>
+                    <td><?php echo $row["description"]; ?></td>     
+                    <td><?php echo $row["status"]; ?></td>
+                
+                    <td class="align-middle"><a href= "viewCall.php?idCall=<?=$row["idCall"] ?>"><img src="style/img/edit.svg" alt="Editar" width="25"></a></td>
+                    <?php if($admin!=0): ?>
+                      <td class="align-middle"><a href= "editCall.php?idCall=<?=$row["idCall"] ?>"><img src="style/img/edit.svg" alt="Editar" width="25"></a></td>
+                    <?php endif ?>               
                 </tr>
               <?php } ?>
             </tbody>
@@ -120,18 +129,18 @@
         <div id="pagination">
           <?php
             
-            $numberOfRegister = "SELECT COUNT(id) AS numResult FROM user";
+            $numberOfRegister = "SELECT COUNT(idCall) AS numResult FROM calltable";
             $resultNumberOfRegister = $connection -> prepare($numberOfRegister);
             $resultNumberOfRegister -> execute();
             $rowNumberOfRegister = $resultNumberOfRegister -> fetch(PDO::FETCH_ASSOC);
             $totalPage = ceil($rowNumberOfRegister['numResult'] / $resultLimit);
             $maxLink = 2;
 
-            echo "<a href='managerUser.php?page=1'>Primeira</a>";
+            echo "<a href='consultCall.php?page=1'>Primeira</a>";
             
             for($previousPage = $page - $maxLink; $previousPage <= $page - 1; $previousPage++ ){
               if($previousPage >= 1){
-              echo "<a href='managerUser.php?page=$previousPage'>$previousPage</a>";
+              echo "<a href='consultCall.php?page=$previousPage'>$previousPage</a>";
               }
             } 
             
@@ -139,16 +148,14 @@
 
             for($nextPage = $page + 1; $nextPage <= $page + $maxLink; $nextPage++ ){
               if($nextPage <= $totalPage){
-              echo "<a href='managerUser.php?page=$nextPage'>$nextPage</a>";
+              echo "<a href='consultCall.php?page=$nextPage'>$nextPage</a>";
               }
             }
 
-            echo "<a href='managerUser.php?page=$totalPage'>Última</a>";
+            echo "<a href='consultCall.php?page=$totalPage'>Última</a>";
           
           ?>
         </div>
       </div>
     </body>
     </html>
-  <?php else: echo "<script>window.location = '../php_helper/dashboard.php'</script>"; ?> 
-  <?php endif; ?>

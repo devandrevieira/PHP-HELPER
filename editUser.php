@@ -5,10 +5,10 @@
     $name  = $_SESSION["user"][0];
     require("actions/connection.php");
 
-    $query = $connection->prepare("SELECT * FROM user WHERE id = id");
+    $id = $_GET['id'];
+    $query = $connection->prepare("SELECT * FROM user WHERE id = $id");
     $query->execute();
     $row=$query->fetch();
-    $id = $_GET['id'];
   }else{
     echo "<script>window.location = '../php_helper/index.html'</script>";
   }  
@@ -27,7 +27,15 @@
     <header>
       <div id="content">
         <div id="user">
-          <span><?php echo $admin ? "Administrador - ".$name : "Utilizador - ".$name; ?></span>
+          <span>
+            <?php if($admin==1){
+              echo "Administrador - ".$name;
+            }elseif($admin==0){
+              echo "Utilizador - ".$name;
+            }else{
+              echo "Manutenção - ".$name;
+            } ?>
+          </span>
         </div>
         <div id="logo">
           <span class="logo">PHP HELPER</span>
@@ -50,17 +58,20 @@
         <input type="text" name="telefone" id="telefone" value="<?php echo $row["telefone"]; ?>" autocomplete="off" required="required">
         <label for="keyword">Senha</label>
         <input type="text" name="keyword" id="keyword" value="<?php echo $row["keyword"]; ?>" autocomplete="off" required="required">
-        <label for="admin">Administrador</label>
+        <label for="admin">Tipo de Perfil</label>
         <input list="admin" name="admin" value="<?php
         if($row["admin"] = 1){
-          echo "SIM";
+          echo "Administrador";
+        }elseif($row["admin"] = 0){
+          echo "Utilizador";    
         }else{
-          echo "NÃO";  
+          echo "Manutenção";  
         }
           ?>" onfocus="this.value='';" autocomplete="off" required="required">
         <datalist id="admin">
-          <option value="NÃO">
-          <option value="SIM">
+          <option value="Administrador">
+          <option value="Utilizador">
+          <option value="Manutenção">
         </datalist>
         </div>
         <div id="button">

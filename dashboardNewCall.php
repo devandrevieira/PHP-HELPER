@@ -24,7 +24,15 @@
     <header>
       <div id="content">
         <div id="user">
-          <span><?php echo $admin ? "Administrador - ".$name : "Utilizador - ".$name; ?></span>
+          <span>
+            <?php if($admin==1){
+              echo "Administrador - ".$name;
+            }elseif($admin==0){
+              echo "Utilizador - ".$name;
+            }else{
+              echo "Manutenção - ".$name;
+            } ?>
+          </span>
         </div>
         <div id="logo">
           <span class="logo">PHP HELPER</span>
@@ -36,7 +44,7 @@
     </header>
     
     <div id=form>
-      <form id="newCall" method="POST" action="actions/newCall.php">
+      <form id="newCall" method="POST" action="actions/insertCall.php">
         <span class="title">novo chamado</span>
         <div id="line">
           <div id="collum">
@@ -44,42 +52,43 @@
             <input type="text" name="id" id="id" value="<?php echo $id; ?>" readonly>
             <label for="telefone">Telefone</label>
             <input type="text" name="telefone" id="telefone" value="<?php echo $telefone; ?>" readonly>
-            <label for="callType">Tipo de Chamada</label>
-            <input list="callType" name="callType" placeholder="Escolha o tipo" autocomplete="off" required="required">
-            <datalist id="callType">
+            <label for="typeCall">Tipo de Chamada</label>
+            <input list="typeCall" name="typeCall" placeholder="Escolha o tipo" autocomplete="off" required="required" onfocus="this.value = ''">
+            <datalist id="typeCall">
               <option value="Rotina">
               <option value="Urgente">
             </datalist> 
             <label for="room">nº Quarto</label>
-            <input type="number" name="room" id="room" placeholder="Número do quarto" autocomplete="off">            
+            <input type="number" name="room" id="room" placeholder="Número do quarto SE PLICÁVEL" autocomplete="off">            
           </div>
           <div  id="collum">
             <label for="name">Nome</label>
             <input type="text" name="name" id="name" value="<?php echo $name; ?>" readonly>
-            <label for="name">E-mail</label>
+            <label for="email">E-mail</label>
             <input type="email" name="email" id="email" value="<?php echo $email; ?>" readonly>
             <label for="local">Local</label>
-            <input list="local" name="local" placeholder="Local da ocorrência" autocomplete="off" required="required">
+            <input list="local" name="local" placeholder="Local da ocorrência" autocomplete="off" required="required" onfocus="this.value = ''">
             <datalist id="local">
               <option value="Quartos">
               <option value="Restaurantes">
               <option value="Cozinhas">
             </datalist> 
-            <label for="date">Data Ocorrência</label>
-            <input type="date" name="date" id="date" autocomplete="off" require="required">          
+            <label for="dateCall">Data Ocorrência</label>
+            <input type="date" name="dateCall" id="dateCall" autocomplete="off" require="required">          
           </div>
         </div>
         <div id="lineText" style="display:inline-block;">
-        <label for="request">Solicitação / Problema</label>
-        <textarea name="request" id="request" placeholder="Reporte o problema aqui..." maxlength="2000" autocomplete="off" required="required"></textarea>
+        <label for="description">Solicitação / Problema</label>
+        <textarea name="description" id="description" placeholder="Reporte o problema aqui..." maxlength="2000" autocomplete="off" required="required"></textarea>
         </div>
-        <div id="button">
-          <button id="btnInsertUser">Inserir</button>
+        <div id="buttons">
+          <div id="button">
+          <button id="btnInsertCall">Inserir</button>
         </div>
       </form>
-      <div id="btnCancel">
-      <a href="dashboard.php"><button id="btnCancel">Cancelar</button></a>
-      </div>
+          <div id="btnCancel">
+          <input type="button" value="Cancelar" onclick="window.location = '../php_helper/consultCall.php'"/>
+        </div>
     </div>
   </body>
   </html>

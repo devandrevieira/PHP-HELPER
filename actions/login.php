@@ -3,7 +3,7 @@
 
   if(isset($_POST["email"]) && isset($_POST["keyword"]) && $connection != null){
     $query = $connection->prepare("SELECT * FROM user WHERE email = ? AND keyword = ?");
-    $query->execute(array($_POST["email"], md5($_POST["keyword"])));
+    $query->execute(array($_POST["email"], ($_POST["keyword"])));
 
     if($query->rowCount()){
       $user = $query->fetchAll(PDO::FETCH_ASSOC)[0];

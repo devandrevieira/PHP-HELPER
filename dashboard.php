@@ -21,7 +21,15 @@
   <header>
     <div id="content">
       <div id="user">
-        <span><?php echo $admin ? "Administrador - ".$name : "Utilizador - ".$name; ?></span>
+        <span>
+          <?php if($admin==1){
+            echo "Administrador - ".$name;
+          }elseif($admin==0){
+            echo "Utilizador - ".$name;
+          }else{
+            echo "Manutenção - ".$name;
+          } ?>
+        </span>
       </div>
       <div id="logo">
         <span class="logo">PHP HELPER</span>
@@ -38,17 +46,14 @@
         <button id="btnLogin" onclick="window.location.href='dashboardNewCall.php';">NOVO CHAMADO</button>
       </div>
       <div id="button">
-        <button id="btnLogin">CONSULTAR CHAMADO</button>
+        <button id="btnLogin" onclick="window.location.href='consultCall.php';">CONSULTAR CHAMADO</button>
       </div>
-      <?php if($admin==0):?>
+      <?php if($admin!=1):?>
       <div id="button">
       <button id="btnLogin">CONTATAR HELPDESK</button>
       </div>
       <?php endif; ?>
-      <?php if($admin): ?>
-      <div id="button">
-        <button id="btnLogin">GERIR CHAMADO</button>
-      </div>
+      <?php if($admin==1): ?>
       <div id="button">
       <button id="btnLogin" onclick="window.location.href='managerUser.php';">GERENCIAR UTILIZADORES</button>
       </div>

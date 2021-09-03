@@ -8,10 +8,12 @@ if(isset($_POST['name'], $_POST['email'], $_POST['telefone'], $_POST['keyword'],
   $email = $_POST['email'];
   $telefone = $_POST['telefone'];
   $keyword = $_POST['keyword'];
-  if ($_POST['admin'] == "NÃO"){
+  if ($_POST['admin'] == "Utilizador"){
     $admin = "0";
-  }else{
-    $admin = "1";
+    }elseif ($_POST['admin'] == "Admnistrador"){
+      $admin = "1";
+    }else{
+      $admin = "2";
   };
 
     $queryInsert = "INSERT INTO user (

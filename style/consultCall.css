@@ -120,6 +120,18 @@ div#userTable{
   box-shadow: 0 5px 10px rgba(0, 0, 0, .5);
 }
 
+table{
+  table-layout: fixed;
+  width: 140px;
+}
+
+tbody td{
+  width: 70px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 div#nameScreen{
   display:flex;
   justify-content:center;
@@ -264,4 +276,12 @@ div#pagination{
 div#pagination a{
   color: #ffffff;
   padding: 5px;
+}
+
+div#pagination a:hover{
+  font-weight: bolder;
+}
+
+div#pagination a:active{
+  color: #000000;
 }

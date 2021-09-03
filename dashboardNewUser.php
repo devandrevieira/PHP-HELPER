@@ -1,5 +1,7 @@
 <?php
   session_start();
+  ob_start();
+
   if(isset($_SESSION["user"]) && is_array($_SESSION["user"])){
     $admin = $_SESSION["user"][1];
     $name  = $_SESSION["user"][0];
@@ -22,7 +24,15 @@
     <header>
       <div id="content">
         <div id="user">
-          <span><?php echo $admin ? "Administrador - ".$name : "Utilizador - ".$name; ?></span>
+          <span>
+            <?php if($admin==1){
+              echo "Administrador - ".$name;
+            }elseif($admin==0){
+              echo "Utilizador - ".$name;
+            }else{
+              echo "Manutenção - ".$name;
+            } ?>
+          </span>
         </div>
         <div id="logo">
           <span class="logo">PHP HELPER</span>
@@ -45,11 +55,12 @@
         <input type="text" name="telefone" id="telefone" placeholder="Inserir Telefone" autocomplete="off" required="required">
         <label for="keyword">Senha</label>
         <input type="text" name="keyword" id="keyword" placeholder="Inserir Senha" autocomplete="off" required="required">
-        <label for="admin">Administrador</label>
-        <input list="admin" name="admin" placeholder="Administrador? Sim ou Não" autocomplete="off" required="required">
+        <label for="admin">Tipo de Perfil</label>
+        <input list="admin" name="admin" placeholder="Escolha o perfil de utilizador" autocomplete="off" required="required">
         <datalist id="admin">
-          <option value="NÃO">
-          <option value="SIM">
+          <option value="Administrador">
+          <option value="Utilizador">
+          <option value="Manutenção">
         </datalist>
         </div>
         <div id="button">
