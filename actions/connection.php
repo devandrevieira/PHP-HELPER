@@ -1,4 +1,7 @@
 <?php
+
+  //Configurações de conexão ao Banco de Dados
+
   $server = "127.0.0.1";
   $user = "root";
   $password = "";
@@ -7,8 +10,9 @@
   try{
     $connection = new PDO("mysql:host=$server;dbname=$database",$user,$password);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  }catch(PDOException $error){
-    //echo "Erro de conexão: {$erro->getMessage()}";
-    $connection = null;
-  }
+    
+    }catch(PDOException $error){
+      echo "Erro de conexão: {$erro->getMessage()}";
+      $connection = null;
+    }
 ?>

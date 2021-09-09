@@ -138,14 +138,13 @@ div#nameScreen span.title{
 div#message{
   width: 100%;
   font-family: FuturaPT;
-  font-size: 18px;
+  font-size: 22px;
   color: #003a44;
   background: #ffffff;
   text-align: center;
   letter-spacing: 1px;
   text-transform: uppercase;
   position:absolute;
-  border-radius: 5px;
 }
 
 div#userTable table{

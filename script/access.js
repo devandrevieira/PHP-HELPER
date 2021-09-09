@@ -1,3 +1,5 @@
+//Função para validação de login
+
 $(function(){
   $("button#btnLogin").on("click", function(e){
     e.preventDefault();

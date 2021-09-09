@@ -68,6 +68,19 @@ header div#logout button:hover{
   color: #003a44;
 }
 
+div#message{
+  margin-top: 20px;
+  width: 100%;
+  font-family: FuturaPT;
+  font-size: 22px;
+  color: #003a44;
+  background: #ffffff;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position:absolute;
+}
+
 div#content{
   width: 1024px;
   margin: 0 auto;

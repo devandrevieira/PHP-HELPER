@@ -62,15 +62,15 @@
         
         <div id="content">
           <div id="nameScreen">
-            <span class="title">Gerenciamento de Utilizadores</span>
+            <span class="title">LISTA DE HELPDESKS</span>
           </div>
                     
           <div id="userTable">
             <div id="searchUser">
               <div id="form">
-                <form action="managerUser.php" method="GET">
+                <form action="consultHelpDesk.php" method="GET">
                     <input type="text" class="form-control" name="keySearch" placeholder="Filtrar Utilizador">
-                    <input type="submit" class="searchButton" name="searchButton" action="managerUser.php" value="Filtrar" >
+                    <input type="submit" class="searchButton" name="searchButton" action="consultHelpDesk.php" value="Filtrar" >
                 </form>
               </div>
               <div id="newUser">
@@ -80,14 +80,14 @@
             <table>
               <thead>
                 <tr>
+                  <td>ID HELP</td>
                   <td>ID</td>
                   <td>NOME</td>
                   <td>EMAIL</td>
                   <td>TELEFONE</td>
-                  <td>SENHA</td>
-                  <td>ADMIN</td>
-                  <td>EDITAR</td>
-                  <td>EXCLUIR</td>
+                  <td>DESCRIÇÃO</td>
+                  <td>STATUS</td>
+                  <td>ALTERAR STATUS</td>
                 </tr>
               </thead>
               <tbody>
@@ -104,25 +104,19 @@
                   if (isset($_GET["searchButton"])){
                   }
                       $keySearch=$_GET['keySearch'];         
-                      $query = $connection->prepare("SELECT * FROM user WHERE id ='$keySearch' or name LIKE '%$keySearch%' or email LIKE '%$keySearch%' LIMIT $start, $resultLimit");
+                      $query = $connection->prepare("SELECT * FROM helpdesk WHERE idHelp ='$keySearch' or nameHelp LIKE '%$keySearch%' or emailHelp LIKE '%$keySearch%' LIMIT $start, $resultLimit");
                       $query->execute();
 
                     while ($row=$query->fetch()) {?>
                     <tr>
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo $row["name"]; ?></td>
-                        <td><?php echo $row["email"]; ?></td>
-                        <td><?php echo $row["telefone"]; ?></td>
-                        <td><?php echo $row["keyword"]; ?></td>
-                        <td><?php if($row["admin"] == 0){
-                          echo "Utilizador";
-                          }elseif($row["admin"] == 1){
-                            echo "Administrador";
-                          }else{
-                            echo "Manunteção";
-                          };?></td>
-                        <td class="align-middle"><a href= "editUser.php?id=<?=$row["id"] ?>"><img src="style/img/edit.svg" alt="Editar" width="25"></a></td>
-                        <td class="align-middle"><a href="actions/deleteUser.php?id=<?=$row["id"] ?>" onclick="return confirm('DESEJA REALMENTE EXCLUIR ESSE UTILIZADOR ?')"><img src="style/img/delete.svg" alt="Excluir" width="20"></a></td>
+                        <td><?php echo $row["idHelp"]; ?></td>
+                        <td><?php echo $row["idUserHelp"]; ?></td>
+                        <td><?php echo $row["nameHelp"]; ?></td>
+                        <td><?php echo $row["emailHelp"]; ?></td>
+                        <td><?php echo $row["telefoneHelp"]; ?></td>
+                        <td><?php echo $row["descriptionHelp"]; ?></td>
+                        <td><?php echo $row["statusHelp"]; ?></td>
+                        <td class="align-middle"><a href= "editHelpDesk.php?idHelp=<?=$row["idHelp"] ?>"><img src="style/img/edit.svg" alt="Alterar" width="25"></a></td>
                     </tr>
                 <?php } ?>
               </tbody>
@@ -132,18 +126,18 @@
 
             <?php
               
-              $numberOfRegister = "SELECT COUNT(id) AS numResult FROM user";
+              $numberOfRegister = "SELECT COUNT(idHelp) AS numResult FROM helpdesk";
               $resultNumberOfRegister = $connection -> prepare($numberOfRegister);
               $resultNumberOfRegister -> execute();
               $rowNumberOfRegister = $resultNumberOfRegister -> fetch(PDO::FETCH_ASSOC);
               $totalPage = ceil($rowNumberOfRegister['numResult'] / $resultLimit);
               $maxLink = 2;
 
-              echo "<a href='managerUser.php?page=1'>Primeira</a>";
+              echo "<a href='consultHelpDesk.php?page=1'>Primeira</a>";
               
               for($previousPage = $page - $maxLink; $previousPage <= $page - 1; $previousPage++ ){
                 if($previousPage >= 1){
-                echo "<a href='managerUser.php?page=$previousPage'>$previousPage</a>";
+                echo "<a href='consultHelpDesk.php?page=$previousPage'>$previousPage</a>";
                 }
               } 
               
@@ -151,11 +145,11 @@
 
               for($nextPage = $page + 1; $nextPage <= $page + $maxLink; $nextPage++ ){
                 if($nextPage <= $totalPage){
-                echo "<a href='managerUser.php?page=$nextPage'>$nextPage</a>";
+                echo "<a href='consultHelpDesk.php?page=$nextPage'>$nextPage</a>";
                 }
               }
 
-              echo "<a href='managerUser.php?page=$totalPage'>Última</a>";
+              echo "<a href='consultHelpDesk.php?page=$totalPage'>Última</a>";
             
             ?>
           </div>
