@@ -26,6 +26,10 @@ if(isset($_POST['id'],$_POST['name'], $_POST['email'], $_POST['telefone'], $_POS
   $dateCall = $_POST['dateCall'];
   $description = $_POST['description'];
 
+  if($_POST['room'] == null){
+    $room ='N/A';
+  }
+
   //Prepara e executa a query de inserção de valores no Banco de dados
   
   $sqlQueryInsert = $connection->prepare ("INSERT INTO calltable (idUserCall, nameCall, emailCall, telefoneCall, typeCall, local, room, dateCall, description, status) VALUES(:idUserCall, :nameCall, :emailCall, :telefoneCall, :typeCall,  :local, :room, :dateCall, :description,'Aberto')");
@@ -40,8 +44,8 @@ if(isset($_POST['id'],$_POST['name'], $_POST['email'], $_POST['telefone'], $_POS
   $sqlQueryInsert->bindValue(':room', $room);
   $sqlQueryInsert->bindValue(':dateCall', $dateCall);
   $sqlQueryInsert->bindValue(':description', $description);
-
   $sqlQueryInsert->execute();
+
 
   // Cria o objeto PHPMailer e realiza as configurações
 

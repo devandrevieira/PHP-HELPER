@@ -85,7 +85,7 @@
           </div>
         </form>
         <div id="btnCancel">
-        <a href="managerUser.php"><button id="btnCancel">Cancelar</button></a>
+        <a href="consultHelpDesk.php"><button id="btnCancel">Cancelar</button></a>
         </div>
       </div>
     </body>

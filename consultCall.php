@@ -122,7 +122,12 @@
                       <td><?php echo $row["typeCall"]; ?></td>
                       <td><?php echo $row["local"]; ?></td>
                       <td><?php echo $row["room"]; ?></td>
-                      <td><?php echo $row["dateCall"]; ?></td>
+                      <td>
+                      <?php
+                      $DatePT = new DateTime($row["dateCall"]);
+                      echo $DatePT->format('d-m-Y'); 
+                      ?>
+                      </td>
                       <td><?php echo $row["description"]; ?></td>     
                       <td><?php echo $row["status"]; ?></td>
                       <td class="align-middle"><a href= "viewCall.php?idCall=<?=$row["idCall"] ?>"><img src="style/img/see.svg" alt="Ver" width="25"></a></td>

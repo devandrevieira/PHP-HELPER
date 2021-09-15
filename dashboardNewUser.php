@@ -60,9 +60,9 @@
             <label for="telefone">Telefone</label>
             <input type="text" name="telefone" id="telefone" placeholder="Inserir Telefone" autocomplete="off" required="required">
             <label for="keyword">Senha</label>
-            <input type="password" name="keyword" id="keyword" id="password" minlength="8" maxlength="12" placeholder="Inserir Senha" autocomplete="off" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onKeyUp="verifyStrongKeyword();"/>
-            <br/><span id="keywordStatus"></span>
-            <label for="admin">Tipo de Perfil</label>
+            <input type="password" name="keyword" id="keyword" minlength="8" maxlength="12" placeholder="Inserir Senha" autocomplete="off" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onKeyUp="verifyStrongKeyword();"/>
+            <span id="keywordStatus"></span>
+            <label for="admin">Perfil</label>
             <input list="admin" name="admin" placeholder="Escolha o perfil de utilizador" autocomplete="off" required="required">
             <datalist id="admin">
               <option value="Administrador">

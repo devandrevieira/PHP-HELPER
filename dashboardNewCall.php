@@ -66,7 +66,7 @@
                 <option value="Programada">
               </datalist> 
               <label for="room">nº Quarto</label>
-              <input type="text" name="room" id="room" placeholder="Número do quarto SE PLICÁVEL" autocomplete="off">            
+              <input type="text" name="room" id="room" placeholder="Número do quarto SE APLICÁVEL" autocomplete="off">            
             </div>
             <div  id="collum">
               <label for="name">Nome</label>
@@ -76,12 +76,13 @@
               <label for="local">Local</label>
               <input list="local" name="local" placeholder="Local da ocorrência" autocomplete="off" required="required" onfocus="this.value = ''">
               <datalist id="local">
+                <option value="Cozinhas">
                 <option value="Quartos">
                 <option value="Restaurantes">
-                <option value="Cozinhas">
+                <option value="Receção">
               </datalist> 
               <label for="dateCall">Data Ocorrência</label>
-              <input type="date" name="dateCall" id="dateCall" autocomplete="off" require="required">          
+              <input type="date" name="dateCall" id="dateCall" autocomplete="off" require="required" value="<?php echo date('Y-m-d'); ?>" readonly>          
             </div>
           </div>
           <div id="lineText" style="display:inline-block;">

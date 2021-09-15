@@ -55,7 +55,7 @@
       
       <div id=form>
         <form id="newCall" method="GET" action="actions/insertCall.php">
-          <span class="title">Alterar status</span>
+          <span class="title">Visualizar Chamado</span>
           <div id="line">
             <div id="collum">
               <label for="idCall">ID Chamado</label>

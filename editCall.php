@@ -87,7 +87,7 @@
               <datalist id="status">
                 <option value="Aberto">
                 <option value="Em andamento">
-                <option value="Fechada">
+                <option value="Encerrada">
               </datalist>          
             </div>
           </div>

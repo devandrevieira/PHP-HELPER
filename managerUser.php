@@ -85,7 +85,7 @@
                   <td>EMAIL</td>
                   <td>TELEFONE</td>
                   <td>SENHA</td>
-                  <td>ADMIN</td>
+                  <td>PERFIL</td>
                   <td>EDITAR</td>
                   <td>EXCLUIR</td>
                 </tr>
@@ -103,8 +103,16 @@
 
                   if (isset($_GET["searchButton"])){
                   }
-                      $keySearch=$_GET['keySearch'];         
-                      $query = $connection->prepare("SELECT * FROM user WHERE id ='$keySearch' or name LIKE '%$keySearch%' or email LIKE '%$keySearch%' LIMIT $start, $resultLimit");
+                      $keySearch=$_GET['keySearch'];
+                      if($keySearch=='Administrador'){
+                        $keySearch=1;
+                      }elseif($keySearch=='Utilizador'){
+                        $keySearch=0;
+                      }elseif($keySearch=='Manutenção'){
+                        $keySearch=2;
+                      }; 
+
+                      $query = $connection->prepare("SELECT * FROM user WHERE id ='$keySearch' or name LIKE '%$keySearch%' or email LIKE '$keySearch' or admin LIKE '%$keySearch%' LIMIT $start, $resultLimit");
                       $query->execute();
 
                     while ($row=$query->fetch()) {?>

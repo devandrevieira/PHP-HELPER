@@ -30,6 +30,7 @@
       <link rel="stylesheet" type="text/css" href="style/dashboardNewUser.css">
       <script type="text/javascript" src="script/jquery.js"></script>
       <script type="text/javascript" src="script/access.js"></script>
+      <script type="text/javascript" src="script/scripts.js"></script>
     </head>
     <body>
       <header>
@@ -66,8 +67,9 @@
             <label for="telefone">Telefone</label>
             <input type="text" name="telefone" id="telefone" value="<?php echo $row["telefone"]; ?>" autocomplete="off" required="required">
             <label for="keyword">Senha</label>
-            <input type="text" name="keyword" id="keyword" value="<?php echo $row["keyword"]; ?>" autocomplete="off" required="required">
-            <label for="admin">Tipo de Perfil</label>
+            <input type="text" name="keyword" id="keyword" value="<?php echo $row["keyword"]; ?>" minlength="8" maxlength="12" placeholder="Inserir Senha" autocomplete="off" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onKeyUp = "verifyStrongKeyword();"/>
+            <span id="keywordStatus"></span>
+            <label for="admin">Perfil</label>
             <input list="admin" name="admin" value="<?php
             if($row["admin"] = 1){
               echo "Administrador";

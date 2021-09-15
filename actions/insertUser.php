@@ -16,7 +16,7 @@ if(isset($_POST['name'], $_POST['email'], $_POST['telefone'], $_POST['keyword'],
   
   if ($_POST['admin'] == "Utilizador"){
     $admin   = "0";
-    }elseif ($_POST['admin'] == "Admnistrador"){
+    }elseif ($_POST['admin'] == "Administrador"){
       $admin = "1";
     }else{
       $admin = "2";
